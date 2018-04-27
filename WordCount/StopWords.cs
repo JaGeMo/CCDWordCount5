@@ -10,7 +10,7 @@ public static class StopWords
 
     public static string[] ReadBlackListWords()
     {
-        string path = @"c:\temp\MyTest.txt";
+        string path = @"C:\Temp\Sicherungen\CleanCode\StopWords.txt";
 
         if (File.Exists(path))
         {
@@ -28,10 +28,7 @@ public static class StopWords
     {
         foreach (string blackListString in in_BlackList)
         {
-            if (in_RawStringList.Any(s => s.Contains(blackListString)))
-            {
-                in_RawStringList.Remove(blackListString);
-            }
+            in_RawStringList.RemoveAll(item => item == blackListString);
         }
 
         return in_RawStringList;

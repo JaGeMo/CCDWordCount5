@@ -7,17 +7,25 @@ namespace WordCount
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args )
         {
             var blackList = StopWords.ReadBlackListWords();
 
-            var inputString = UIInput.ReturnStringFromInput();
+            var inputString = UIInput.EnterInputString();
 
-            var splitList = SplitString.StringSplitted(inputString);
+            var splitList = Splitter.SplitString(inputString);
 
             var cleansedList = StopWords.ReturnCleansedString(blackList, splitList);
 
-            Console.WriteLine(CountStrings.StringsCountFromList(cleansedList));
+            var allWords = CountStrings.StringsCountFromList(cleansedList);
+
+            var uniqueWords = CountStrings.UniqueStringsCountFromList(cleansedList);
+
+            Console.WriteLine("number of words: " + allWords + ", unique: " + uniqueWords);
+
+#if DEBUG
+            Console.Read();
+#endif
         }
     }
 }

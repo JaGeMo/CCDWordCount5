@@ -8,16 +8,35 @@ namespace WordCount
 {
     public static class CountStrings
     {
-        private static int result = 0;
-
+        
         public static int StringsCountFromList(List<string> in_List)
         {
+            int counterItems = 0;
+
             foreach (string word in in_List)
             {
-                result++;
+                counterItems++;
             }
 
-            return result;
+            return counterItems;
         }
+
+        public static int UniqueStringsCountFromList(List<string> in_List)
+        {
+            int counterUniqueItems = 1;
+
+            in_List.Sort();
+
+            for (int i = 1; i < in_List.Count; i++ )
+            {
+                if (in_List[i-1] != in_List[i])
+                {
+                    counterUniqueItems++;
+                }
+            }
+
+            return counterUniqueItems;
+        }
+        
     }
 }
